@@ -35,7 +35,7 @@ export function setUser(user) {
         payload: user
     }
 }
-export function getTransactions(posts) {
+export function getPosts(posts) {
     return {
         type: GET_POSTS,
         payload: posts
@@ -66,14 +66,8 @@ export default function reducer(state=initialState, action) {
         case SET_INITIALSTATE:
             return {
                 username: '',
-                balance: 0,
-                loggedIn: false,
-                isAdmin: null,
-                userid: '',
                 user: [],
-                transactions: [],
-                rcvdTransactions: [],
-                sentTransactions: [],
+                posts: [],
             }
 
         case SET_USERNAME:
