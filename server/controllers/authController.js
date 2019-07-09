@@ -43,6 +43,7 @@ module.exports = {
                 user: user[0],
                 username: user[0].username
               };
+              console.log(req.session)
             });
           }
         } else {
