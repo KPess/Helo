@@ -7,9 +7,9 @@ import {Route, Switch} from 'react-router-dom';
 
 export default (
     <Switch>
+        <Route path='/' exact='true' component={Auth} />
         <Route path='/form' component={Form} />
         <Route path='/dashboard' component={Dashboard} />
-        <Route path='/auth' component={Auth}/>
         <Route path='/post' component={Post}/>
     </Switch>
 )

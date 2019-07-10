@@ -42,7 +42,7 @@ module.exports = {
               req.session.user = {
                 username
               };
-              res.status(200).json(req.session.user)
+              res.status(200).json(req.session.user);
             });
           }
         } else {
@@ -63,13 +63,23 @@ module.exports = {
       const user = foundUser[0];
       if (req.session) {
         req.session.user = {
-          username: user.username,
+          username: user.username
         };
         return res.send(req.session.user);
       }
+    } else {
+      res.status(401).json(`Please log in`);
     }
-    else {
-      res.status(401).json(`Please log in`)
+  },
+  getAllPosts: async (req, res) => {
+    const db = req.app.get("db");
+    console.log(req.query)
+    if (req.query.title) {
+      const searchPosts = await db.getSearch(req.query.title);
+      return res.status(200).send(searchPosts);
+    } else {
+      const allPosts = await db.getAllPosts();
+      return res.status(200).send(allPosts);
     }
   }
 };

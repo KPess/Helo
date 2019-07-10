@@ -16,16 +16,6 @@ function App() {
     <Provider store={store}>
       <HashRouter>
         <div className="App">{routes}
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              <Auth />
-              <Dashboard />
-              <Form />
-              <Nav />
-              <Post />
-            </p>
-          </header>
         </div>
       </HashRouter>
     </Provider>

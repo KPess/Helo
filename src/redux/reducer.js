@@ -3,6 +3,7 @@ const initialState = {
     username: '',
     user: [],
     posts: [],
+    searchPosts: []
 }
 
 //constants
@@ -10,6 +11,7 @@ const SET_USERNAME = "SET_USERNAME";
 const SET_BALANCE = "SET_BALANCE";
 const SET_USER = "SET_USER"
 const GET_POSTS = "GET_POSTS"
+const GET_SEARCH_POSTS = "GET_SEARCH_POSTS"
 const GET_SENT_TRANSACTIONS = "GET_SENT_TRANSACTIONS"
 const GET_RCVD_TRANSACTIONS = "GET_RCVD_TRANSACTIONS"
 const SET_INITIALSTATE = "SET_INITIALSTATE"
@@ -41,6 +43,12 @@ export function getPosts(posts) {
         payload: posts
     }
 }
+export function getSearch(posts) {
+    return {
+        type: GET_SEARCH_POSTS,
+        payload: posts
+    }
+}
 export function getSentTransactions(sentTransactions) {
     return {
         type: GET_SENT_TRANSACTIONS,
@@ -68,6 +76,7 @@ export default function reducer(state=initialState, action) {
                 username: '',
                 user: [],
                 posts: [],
+                searchPosts: []
             }
 
         case SET_USERNAME:
@@ -89,6 +98,11 @@ export default function reducer(state=initialState, action) {
             return {
                 ...state,
                 posts: action.payload
+            }
+        case GET_SEARCH_POSTS:
+            return {
+                ...state,
+                searchPosts: action.payload
             }
         case GET_SENT_TRANSACTIONS:
             return {

@@ -28,5 +28,7 @@ app.post("/auth/login/user", authController.login);
 app.post("/auth/logout", authController.logout);
 app.get("/auth/session", authController.currentSession);
 
+//post endpoints
+app.get("/posts", authController.getAllPosts)
 
 app.listen(5050, () => console.log(`Listening on Port 5050`));
