@@ -13,6 +13,15 @@ class Auth extends React.Component {
             username: ''
         }
     }
+
+    componentDidMount() {
+        if (this.props.username) {
+            this.setState({username: this.props.username})
+            return <Redirect to="/dashboard"/>
+        } else {
+            return <Redirect to="/"/>
+        }
+    }
     handleChange = e => {
         this.setState({
           [e.target.name]: e.target.value
@@ -28,16 +37,16 @@ class Auth extends React.Component {
         e.preventDefault()
         const {username, password} = this.state
         // Prevent default prevents the page from re-rendering 
-        // when the submit button is PermissionRequestedEvent, 
+        // when the submit button is pressed, 
         // which was breaking stuff.
         Axios.post('/auth/login/user', {
           username,
           password
         }).then( response => {
               this.props.setUsername(response.data.username);
-              this.props.setUser(response.data);
+              this.props.setUser(response.data.user.username);
               // this.props.getTransactions(response.transactions.data);
-              console.log(response)
+              console.log(response.data.user)
         }).catch( error => {
             this.setState({error: error.response});
         })
@@ -63,7 +72,7 @@ class Auth extends React.Component {
     }
 
     render() {
-        if (this.session) {
+        if (this.props.username) {
             return <Redirect to="/dashboard"/>
         }
         return (
@@ -79,11 +88,8 @@ class Auth extends React.Component {
 }
 
 
-const mapStateToProps = state => { //Takes in Redux state
-    return {
-        username: state.username, 
-        posts: state.posts
-    }
-}
+const mapStateToProps = reduxState => {
+    return reduxState;
+  };
 
-export default connect(mapStateToProps, {setUsername, setBalance, setUser, getPosts})(Auth); 
+export default connect(mapStateToProps, {setUsername, setUser, getPosts})(Auth); 

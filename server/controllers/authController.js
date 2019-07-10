@@ -40,10 +40,9 @@ module.exports = {
           } else {
             db.checkForUser(username).then(() => {
               req.session.user = {
-                user: user[0],
-                username: user[0].username
+                username
               };
-              console.log(req.session)
+              res.status(200).json(req.session.user)
             });
           }
         } else {
