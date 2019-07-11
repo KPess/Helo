@@ -37,11 +37,11 @@ class Dashboard extends React.Component {
 
   handleClick = e => {
       Axios.get(`/posts?title=${this.state.search}`).then(response => {
-          console.log(response)
+        //   console.log(response)
           this.props.getSearch(response.data)
           this.setState({posts: response.data})
-          console.log(this.state)
-          console.log(this.props)
+        //   console.log(this.state)
+        //   console.log(this.props)
       })
   }
 
@@ -54,7 +54,7 @@ class Dashboard extends React.Component {
   };
 
   render() {
-    console.log(this.props.posts);
+    // console.log(this.props.posts);
     let displayPosts = this.props.posts.map(post => {
         return (
       <Card key={post.post_id} style={{"maxWidth": "50vw"}}>

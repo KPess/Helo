@@ -102,7 +102,7 @@ export default function reducer(state=initialState, action) {
         case GET_SEARCH_POSTS:
             return {
                 ...state,
-                searchPosts: action.payload
+                posts: action.payload
             }
         case GET_SENT_TRANSACTIONS:
             return {
